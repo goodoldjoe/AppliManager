@@ -27,6 +27,5 @@ public class Main extends Application {
         login.query();
         login.extract();
         login.cleanUp();
-        launch(args);
     }
 }

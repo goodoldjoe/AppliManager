@@ -27,7 +27,7 @@ public class Login {
         }catch(Exception e){
         //Handle errors for Class.forName
             e.printStackTrace();
-        }finally{
+        }/*finally{
         //finally block used to close resources
             try{
                 if(stmt!=null)
@@ -40,7 +40,7 @@ public class Login {
             }catch(SQLException se){
                 se.printStackTrace();
             }//end finally try
-        }
+        }*/
     }
 
     public ResultSet query() throws SQLException {
