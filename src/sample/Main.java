@@ -14,7 +14,7 @@ public class Main extends Application {
     public void start(Stage primaryStage) throws Exception{
         Parent login = FXMLLoader.load(getClass().getResource("sample.fxml"));
         primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(login, 300, 275));
+        primaryStage.setScene(new Scene(login, 700, 450));
         primaryStage.show();
 
 
@@ -27,5 +27,6 @@ public class Main extends Application {
         login.query();
         login.extract();
         login.cleanUp();
+        launch(args);
     }
 }
