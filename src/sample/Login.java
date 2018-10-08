@@ -14,6 +14,7 @@ public class Login {
     //Database variables
     private Connection conn = null;
     private Statement stmt = null;
+    private PreparedStatement prepStmt = null;
     private ResultSet rs = null;
 
     public void connect() {
@@ -43,15 +44,34 @@ public class Login {
         }*/
     }
 
-    public ResultSet query() throws SQLException {
+    public void query() throws SQLException {
         System.out.println("Creating statement...");
         stmt = conn.createStatement();
         String sql;
         sql = "SELECT id, first, last, age FROM Employees";
         rs = stmt.executeQuery(sql);
-        return rs;
     }
 
+    public void prepQuery() throws SQLException {
+        System.out.println("Creating Prep statement..");
+        String paraQuery = "SELECT id, first" +
+                " FROM Employees " +
+                "WHERE LAST = ?";
+        prepStmt = conn.prepareStatement(paraQuery);
+
+        prepStmt.setString(1, "Ali");
+
+        rs = prepStmt.executeQuery();
+
+        int id = rs.getInt("id");
+        String first = rs.getString("first");
+
+
+            System.out.println("You've selected the following:");
+            System.out.println("ID: " + id + " FirstName: " + first);
+
+
+    }
     public void extract() throws SQLException {
         //STEP 5: Extract data from result set
         while (rs.next()) {
