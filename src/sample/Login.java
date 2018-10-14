@@ -57,21 +57,23 @@ public class Login {
         String paraQuery = "SELECT id, first" +
                 " FROM Employees " +
                 "WHERE LAST = ?";
+
         prepStmt = conn.prepareStatement(paraQuery);
 
         prepStmt.setString(1, "Ali");
 
         rs = prepStmt.executeQuery();
-
-        int id = rs.getInt("id");
-        String first = rs.getString("first");
-
-
+        if (rs.next()) {
+            int id = rs.getInt("id");
+            String first = rs.getString("first");
             System.out.println("You've selected the following:");
             System.out.println("ID: " + id + " FirstName: " + first);
-
-
+        }
+        else {
+            System.out.println("Failed to extract");
+        }
     }
+
     public void extract() throws SQLException {
         //STEP 5: Extract data from result set
         while (rs.next()) {
@@ -91,7 +93,7 @@ public class Login {
 
     public void cleanUp() throws SQLException {
         rs.close();
-        stmt.close();
+        //stmt.close();
         conn.close();
     }
 

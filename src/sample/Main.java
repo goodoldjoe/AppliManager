@@ -24,8 +24,8 @@ public class Main extends Application {
     public static void main(String[] args) throws SQLException {
         Login login = new Login();
         login.connect();
-        /*login.query();
-        login.extract();*/
+        //login.query();
+        //login.extract();
         login.prepQuery();
         login.cleanUp();
         launch(args);
