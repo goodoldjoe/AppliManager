@@ -16,8 +16,6 @@ public class Main extends Application {
         primaryStage.setTitle("Hello World");
         primaryStage.setScene(new Scene(login, 700, 450));
         primaryStage.show();
-
-
     }
 
 
@@ -26,8 +24,9 @@ public class Main extends Application {
         login.connect();
         //login.query();
         //login.extract();
-        login.prepQuery();
-        login.cleanUp();
+        //login.prepQuery();
+
         launch(args);
+
     }
 }

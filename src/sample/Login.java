@@ -68,9 +68,11 @@ public class Login {
             String first = rs.getString("first");
             System.out.println("You've selected the following:");
             System.out.println("ID: " + id + " FirstName: " + first);
+            prepStmt.close();
         }
         else {
             System.out.println("Failed to extract");
+            prepStmt.close();
         }
     }
 
@@ -95,6 +97,29 @@ public class Login {
         rs.close();
         //stmt.close();
         conn.close();
+    }
+
+    public Boolean checkLogin(String name, String password) throws SQLException {
+        System.out.println("Checking details...");
+        Boolean loggedIn = false;
+        String loginQuery = "SELECT first, last" +
+                "FROM Employees" +
+                "WHERE username = ? AND password = ?";
+        prepStmt = conn.prepareStatement(loginQuery);
+
+        prepStmt.setString(1, name);
+        prepStmt.setString(2, password);
+
+        rs = prepStmt.executeQuery();
+
+        if (rs.next()) {
+            System.out.println("Login for " + rs.getString("first") + " success");
+            loggedIn = true;
+        } else {
+            System.out.println("Login failed");
+        }
+
+        return loggedIn;
     }
 
 }

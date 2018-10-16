@@ -12,8 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Text?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.101" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <top>
       <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
@@ -37,9 +36,9 @@
             <VBox prefHeight="200.0" prefWidth="100.0" GridPane.columnIndex="1">
                <children>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Username" />
-                  <TextField />
+                  <TextField fx:id="userNameInput" />
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Password" />
-                  <TextField />
+                  <TextField fx:id="pwInput" />
                </children>
             </VBox>
             <SplitPane dividerPositions="0.5" prefHeight="160.0" prefWidth="200.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
@@ -47,12 +46,12 @@
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                      <children>
                         <Text layoutX="22.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Bereits registriert?" wrappingWidth="81.10198974609375" />
-                        <Button layoutX="22.0" layoutY="59.0" mnemonicParsing="false" text="Button" />
+                        <Button fx:id="submitButt" layoutX="22.0" layoutY="59.0" mnemonicParsing="false" onAction="#loginProcess" text="Login" />
                      </children>
                   </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                      <children>
-                        <Button layoutX="22.0" layoutY="59.0" mnemonicParsing="false" text="Button" />
+                        <Button fx:id="regiButt" layoutX="18.0" layoutY="59.0" mnemonicParsing="false" text="Register" />
                         <Text layoutX="20.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Noch nicht registriert?" wrappingWidth="85.5625" />
                      </children>
                   </AnchorPane>
