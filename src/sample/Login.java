@@ -17,11 +17,13 @@ public class Login {
     private PreparedStatement prepStmt = null;
     private ResultSet rs = null;
 
-    public void connect() {
+    public Boolean connect() {
+        Boolean connected = false;
         try {
             System.out.println("Connecting to database...");
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
             System.out.println("Connect Success");
+            connected = true;
         }catch(SQLException se){
         //Handle errors for JDBC
             se.printStackTrace();
@@ -42,6 +44,7 @@ public class Login {
                 se.printStackTrace();
             }//end finally try
         }*/
+        return connected;
     }
 
     public void query() throws SQLException {
@@ -52,27 +55,37 @@ public class Login {
         rs = stmt.executeQuery(sql);
     }
 
-    public void prepQuery() throws SQLException {
-        System.out.println("Creating Prep statement..");
-        String paraQuery = "SELECT id, first" +
-                " FROM Employees " +
-                "WHERE LAST = ?";
+    public void prepQuery() {
+        try {
+            System.out.println("Creating Prep statement..");
+            String paraQuery = "SELECT id, first" +
+                    " FROM Employees " +
+                    "WHERE LAST = ?";
 
-        prepStmt = conn.prepareStatement(paraQuery);
+            prepStmt = conn.prepareStatement(paraQuery);
 
-        prepStmt.setString(1, "Ali");
+            prepStmt.setString(1, "Ali");
 
-        rs = prepStmt.executeQuery();
-        if (rs.next()) {
-            int id = rs.getInt("id");
-            String first = rs.getString("first");
-            System.out.println("You've selected the following:");
-            System.out.println("ID: " + id + " FirstName: " + first);
+            rs = prepStmt.executeQuery();
+            while(rs.next()) {
+                int id = rs.getInt("id");
+                String first = rs.getString("first");
+                System.out.println("You've selected the following:");
+                System.out.println("ID: " + id + " FirstName: " + first);
+            }
             prepStmt.close();
-        }
-        else {
+            conn.close();
+        } catch (SQLException e) {
             System.out.println("Failed to extract");
-            prepStmt.close();
+            e.printStackTrace();
+            try {
+                prepStmt.close();
+                conn.close();
+            } catch (SQLException b) {
+                System.out.println("Failed to close Statement.");
+            }
+        } catch (NullPointerException h) {
+            h.printStackTrace();
         }
     }
 
@@ -94,29 +107,40 @@ public class Login {
     }
 
     public void cleanUp() throws SQLException {
-        rs.close();
+        if (rs != null) {
+            rs.close();
+        }
         //stmt.close();
-        conn.close();
+        if (conn != null) {
+            conn.close();
+        }
     }
 
-    public Boolean checkLogin(String name, String password) throws SQLException {
-        System.out.println("Checking details...");
+    public Boolean checkLogin(String name, String password) {
         Boolean loggedIn = false;
-        String loginQuery = "SELECT first, last" +
-                "FROM Employees" +
-                "WHERE username = ? AND password = ?";
-        prepStmt = conn.prepareStatement(loginQuery);
+        try {
+            System.out.println("Checking details...");
 
-        prepStmt.setString(1, name);
-        prepStmt.setString(2, password);
+            String loginQuery = "SELECT first, last " +
+                    "FROM Employees " +
+                    "WHERE first = ? AND last = ?";
+            prepStmt = conn.prepareStatement(loginQuery);
 
-        rs = prepStmt.executeQuery();
+            prepStmt.setString(1, name);
+            prepStmt.setString(2, password);
 
-        if (rs.next()) {
-            System.out.println("Login for " + rs.getString("first") + " success");
-            loggedIn = true;
-        } else {
-            System.out.println("Login failed");
+            rs = prepStmt.executeQuery();
+
+            while (rs.next()) {
+                System.out.println("Login for " + rs.getString("first") + " success");
+                loggedIn = true;
+            }
+        } catch (SQLException e) {
+            System.out.println("PrepStatment failed");
+            loggedIn = false;
+            e.printStackTrace();
+        } catch (NullPointerException h) {
+            h.printStackTrace();
         }
 
         return loggedIn;

@@ -16,16 +16,26 @@ public class Controller {
     private TextField pwInput;
 
     @FXML
-    private void loginProcess() throws SQLException {
+    private void loginProcess() {
         String user = userNameInput.getText();
         String pw = pwInput.getText();
-
+        if (!login.connect()) {
+            login.connect();
+        }
         if(login.checkLogin(user, pw)) {
             System.out.println("Success!");
-            login.cleanUp();
+            try {
+                login.cleanUp();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         } else {
             System.out.println("Fail!");
-            login.cleanUp();
+            try {
+                login.cleanUp();
+            } catch (SQLException e) {
+                e.printStackTrace();
+            }
         }
     }
 }

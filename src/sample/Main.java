@@ -20,8 +20,8 @@ public class Main extends Application {
 
 
     public static void main(String[] args) throws SQLException {
-        Login login = new Login();
-        login.connect();
+       // Login login = new Login();
+        //login.connect();
         //login.query();
         //login.extract();
         //login.prepQuery();
