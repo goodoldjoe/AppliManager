@@ -24,18 +24,30 @@ public class Controller {
         }
         if(login.checkLogin(user, pw)) {
             System.out.println("Success!");
-            try {
-                login.cleanUp();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            login.cleanUp();
         } else {
             System.out.println("Fail!");
-            try {
-                login.cleanUp();
-            } catch (SQLException e) {
-                e.printStackTrace();
-            }
+            login.cleanUp();
+        }
+    }
+
+    @FXML
+    private void registerProcess(){
+        String user = userNameInput.getText();
+        String pw = pwInput.getText();
+        boolean connected = false;
+        if (!login.connect()) {
+            connected = login.connect();
+        }
+
+        if (login.register(user, pw)) {
+            System.out.println("YAY!");
+        } else {
+            System.out.println("Aww!");
+        }
+
+        if (connected) {
+            login.cleanUp();
         }
     }
 }

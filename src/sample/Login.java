@@ -106,18 +106,23 @@ public class Login {
         }
     }
 
-    public void cleanUp() throws SQLException {
-        if (rs != null) {
-            rs.close();
+    public void cleanUp() {
+        try {
+            if (rs != null) {
+                rs.close();
+            }
+            //stmt.close();
+            if (conn != null) {
+                conn.close();
+            }
+        } catch (SQLException e) {
+            System.out.println("Close failed..!");
         }
-        //stmt.close();
-        if (conn != null) {
-            conn.close();
-        }
+
     }
 
     public Boolean checkLogin(String name, String password) {
-        Boolean loggedIn = false;
+        boolean loggedIn = false;
         try {
             System.out.println("Checking details...");
 
@@ -144,6 +149,44 @@ public class Login {
         }
 
         return loggedIn;
+    }
+
+    public Boolean register(String name, String password) {
+        boolean registerSuccess = false;
+        try {
+            System.out.println("Registering");
+
+            String registerQuery = "INSERT INTO Employees(age, first, last) " +
+                    "VALUES (" +
+                    "?, ?, ?)";
+            prepStmt = conn.prepareStatement(registerQuery);
+            prepStmt.setInt(1, 20);
+            prepStmt.setString(2, name);
+            prepStmt.setString(3, password);
+
+            int erfolg = prepStmt.executeUpdate();
+
+            if ( erfolg > 0) {
+                System.out.println("Insert erfolg!");
+                registerSuccess = true;
+            } else {
+                System.out.println("Insert failed | No ROW Affected");
+            }
+        } catch (SQLException e) {
+            System.out.println("Insert failed");
+            e.printStackTrace();
+        } catch (NullPointerException h) {
+            h.printStackTrace();
+        }
+        return registerSuccess;
+    }
+
+    public void closeConn() {
+        try {
+            conn.close();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
     }
 
 }
