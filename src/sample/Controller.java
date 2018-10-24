@@ -3,17 +3,20 @@ package sample;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
-
-import java.sql.SQLException;
+import javafx.scene.text.Text;
 
 public class Controller {
     private Login login = new Login();
+    private Main main = new Main();
 
     @FXML
     private TextField userNameInput;
 
     @FXML
     private TextField pwInput;
+
+    @FXML
+    private Text errorText;
 
     @FXML
     private void loginProcess() {
@@ -24,30 +27,21 @@ public class Controller {
         }
         if(login.checkLogin(user, pw)) {
             System.out.println("Success!");
-            login.cleanUp();
         } else {
+            errorText.setText("ERROR: Check yo details!");
             System.out.println("Fail!");
-            login.cleanUp();
         }
     }
 
     @FXML
-    private void registerProcess(){
-        String user = userNameInput.getText();
-        String pw = pwInput.getText();
-        boolean connected = false;
-        if (!login.connect()) {
-            connected = login.connect();
-        }
-
-        if (login.register(user, pw)) {
-            System.out.println("YAY!");
-        } else {
-            System.out.println("Aww!");
-        }
-
-        if (connected) {
-            login.cleanUp();
+    private void openRegisterWindow() {
+        try {
+            System.out.println("kakspasst");
+            main.registerWindow();
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
+
+
 }

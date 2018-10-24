@@ -15,7 +15,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <top>
-      <HBox prefHeight="100.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+      <HBox prefHeight="84.0" prefWidth="600.0" BorderPane.alignment="CENTER">
          <children>
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Login" wrappingWidth="596.5366821289062" />
          </children>
@@ -52,12 +52,13 @@
                   </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                      <children>
-                        <Button fx:id="regiButt" layoutX="18.0" layoutY="59.0" mnemonicParsing="false" onAction="#registerProcess" text="Register" />
+                        <Button fx:id="regiButt" layoutX="18.0" layoutY="59.0" mnemonicParsing="false" onAction="#openRegisterWindow" text="Register" />
                         <Text layoutX="20.0" layoutY="27.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Noch nicht registriert?" wrappingWidth="85.5625" />
                      </children>
                   </AnchorPane>
               </items>
             </SplitPane>
+            <Text fx:id="errorText" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="199.7366943359375" GridPane.columnIndex="1" GridPane.rowIndex="2" />
          </children>
       </GridPane>
    </center>

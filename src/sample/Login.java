@@ -5,7 +5,7 @@ import java.sql.*;
 public class Login {
 
     //static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    private static final String DB_URL = "jdbc:mysql://localhost/EMP?serverTimezone=UTC";
+    private static final String DB_URL = "jdbc:mysql://localhost/AppliManager?serverTimezone=UTC";
 
     //  Database credentials
     private static final String USER = "root";
@@ -47,88 +47,14 @@ public class Login {
         return connected;
     }
 
-    public void query() throws SQLException {
-        System.out.println("Creating statement...");
-        stmt = conn.createStatement();
-        String sql;
-        sql = "SELECT id, first, last, age FROM Employees";
-        rs = stmt.executeQuery(sql);
-    }
-
-    public void prepQuery() {
-        try {
-            System.out.println("Creating Prep statement..");
-            String paraQuery = "SELECT id, first" +
-                    " FROM Employees " +
-                    "WHERE LAST = ?";
-
-            prepStmt = conn.prepareStatement(paraQuery);
-
-            prepStmt.setString(1, "Ali");
-
-            rs = prepStmt.executeQuery();
-            while(rs.next()) {
-                int id = rs.getInt("id");
-                String first = rs.getString("first");
-                System.out.println("You've selected the following:");
-                System.out.println("ID: " + id + " FirstName: " + first);
-            }
-            prepStmt.close();
-            conn.close();
-        } catch (SQLException e) {
-            System.out.println("Failed to extract");
-            e.printStackTrace();
-            try {
-                prepStmt.close();
-                conn.close();
-            } catch (SQLException b) {
-                System.out.println("Failed to close Statement.");
-            }
-        } catch (NullPointerException h) {
-            h.printStackTrace();
-        }
-    }
-
-    public void extract() throws SQLException {
-        //STEP 5: Extract data from result set
-        while (rs.next()) {
-            //Retrieve by column name
-            int id = rs.getInt("id");
-            int age = rs.getInt("age");
-            String first = rs.getString("first");
-            String last = rs.getString("last");
-
-            //Display values
-            System.out.print("ID: " + id);
-            System.out.print(", Age: " + age);
-            System.out.print(", First: " + first);
-            System.out.println(", Last: " + last);
-        }
-    }
-
-    public void cleanUp() {
-        try {
-            if (rs != null) {
-                rs.close();
-            }
-            //stmt.close();
-            if (conn != null) {
-                conn.close();
-            }
-        } catch (SQLException e) {
-            System.out.println("Close failed..!");
-        }
-
-    }
-
     public Boolean checkLogin(String name, String password) {
         boolean loggedIn = false;
         try {
             System.out.println("Checking details...");
 
-            String loginQuery = "SELECT first, last " +
-                    "FROM Employees " +
-                    "WHERE first = ? AND last = ?";
+            String loginQuery = "SELECT u.user, u.pw " +
+                    "FROM user u " +
+                    "WHERE u.user = ? AND u.pw = ?";
             prepStmt = conn.prepareStatement(loginQuery);
 
             prepStmt.setString(1, name);
@@ -137,7 +63,7 @@ public class Login {
             rs = prepStmt.executeQuery();
 
             while (rs.next()) {
-                System.out.println("Login for " + rs.getString("first") + " success");
+                System.out.println("Login for " + rs.getString("user") + " success");
                 loggedIn = true;
             }
         } catch (SQLException e) {
@@ -146,6 +72,9 @@ public class Login {
             e.printStackTrace();
         } catch (NullPointerException h) {
             h.printStackTrace();
+        } finally {
+            cleanConn();
+            cleanResult();
         }
 
         return loggedIn;
@@ -153,40 +82,54 @@ public class Login {
 
     public Boolean register(String name, String password) {
         boolean registerSuccess = false;
+        boolean correctEntry = false;
         try {
+            connect();
             System.out.println("Registering");
 
-            String registerQuery = "INSERT INTO Employees(age, first, last) " +
+            String registerQuery = "INSERT INTO user(user, pw) " +
                     "VALUES (" +
-                    "?, ?, ?)";
+                    "?, ?)";
             prepStmt = conn.prepareStatement(registerQuery);
-            prepStmt.setInt(1, 20);
-            prepStmt.setString(2, name);
-            prepStmt.setString(3, password);
+            prepStmt.setString(1, name);
+            prepStmt.setString(2, password);
 
             int erfolg = prepStmt.executeUpdate();
 
-            if ( erfolg > 0) {
+            if (erfolg > 0) {
                 System.out.println("Insert erfolg!");
                 registerSuccess = true;
             } else {
                 System.out.println("Insert failed | No ROW Affected");
             }
+            correctEntry = true;
         } catch (SQLException e) {
             System.out.println("Insert failed");
-            e.printStackTrace();
-        } catch (NullPointerException h) {
-            h.printStackTrace();
+        } finally {
+            cleanConn();
         }
         return registerSuccess;
     }
 
-    public void closeConn() {
+    public void cleanConn() {
         try {
-            conn.close();
+            if (conn != null) {
+                conn.close();
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+
+    public void cleanResult() {
+        try {
+            if (rs != null) {
+                rs.close();
+            }
+        } catch (SQLException e) {
+            System.out.println("Close failed..!");
+        }
+
     }
 
 }

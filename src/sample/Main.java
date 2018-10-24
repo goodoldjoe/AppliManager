@@ -4,27 +4,34 @@ import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 import java.sql.SQLException;
 
 public class Main extends Application {
-
+    Stage window;
+    Stage newWindow = new Stage();
     @Override
     public void start(Stage primaryStage) throws Exception{
+        this.window = primaryStage;
         Parent login = FXMLLoader.load(getClass().getResource("sample.fxml"));
-        primaryStage.setTitle("Hello World");
-        primaryStage.setScene(new Scene(login, 700, 450));
-        primaryStage.show();
+
+        window.setTitle("AppliManager");
+        window.setScene(new Scene(login, 700, 450));
+        window.show();
     }
 
+    public void registerWindow() throws Exception{
+        Parent register = FXMLLoader.load(getClass().getResource("registerWindow.fxml"));
+        newWindow.setScene(new Scene(register, 700, 450));
+        newWindow.initOwner(window);
+        newWindow.initModality(Modality.APPLICATION_MODAL);
+        newWindow.showAndWait();
+        newWindow.show();
+    }
 
     public static void main(String[] args) throws SQLException {
-       // Login login = new Login();
-        //login.connect();
-        //login.query();
-        //login.extract();
-        //login.prepQuery();
 
         launch(args);
 
