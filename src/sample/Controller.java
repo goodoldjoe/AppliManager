@@ -1,51 +1,45 @@
 package sample;
 
-import javafx.fxml.FXML;
-import java.io.IOException;
-import java.util.Optional;
-
-import com.sun.javafx.logging.Logger;
-
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Alert.AlertType;
-import javafx.scene.control.ButtonType;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
-import javafx.scene.control.Dialog;
-import javafx.scene.control.Alert;
-import javafx.scene.control.TextInputDialog;
-import javafx.scene.control.ChoiceDialog;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
+import javafx.scene.control.TextField;
+import javafx.scene.text.Text;
 
 public class Controller {
+    private Login login = new Login();
+    private Main main = new Main();
+
     @FXML
-    private javafx.scene.control.Label status, label;
-    @FXML private javafx.scene.control.TextField textfield, text;
-    @FXML private javafx.scene.control.Button btn1, btn2;
+    private TextField userNameInput;
 
-    public Main main;
+    @FXML
+    private TextField pwInput;
 
-    //das erlaubt uns auf alle methoden aus der Main kalsse zugreifen zu können
-    public void setMain(Main main) {
-        this.main = main;
+    @FXML
+    private Text errorText;
 
-        btn1.setOnAction(event -> {
-            main.newWindow();
-        });
-
-        btn2.setOnAction(event -> {
-            System.out.println("ey");
-        });
+    @FXML
+    private void loginProcess() {
+        String user = userNameInput.getText();
+        String pw = pwInput.getText();
+        if (!login.connect()) {
+            login.connect();
+        }
+        if (login.checkLogin(user, pw)) {
+            System.out.println("Success!");
+        } else {
+            errorText.setText("ERROR: Check yo details!");
+            System.out.println("Fail!");
+        }
     }
 
-    public void setNewWindow(Main main) {
-        this.main = main;
-
-
+    @FXML
+    private void openRegisterWindow() {
+        try {
+            System.out.println("kakspasst");
+            main.registerWindow();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

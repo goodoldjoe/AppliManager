@@ -1,58 +1,39 @@
 package sample;
 
 import javafx.application.Application;
-import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.GridPane;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
-import java.io.IOException;
 
-public class    Main extends Application {
+import java.sql.SQLException;
+
+public class Main extends Application {
     Stage window;
-    Stage window2 = new Stage();
-    @FXML private javafx.scene.control.Button  button;
-
-
+    Stage newWindow = new Stage();
     @Override
-    public void start(Stage primaryStage) {
-        window = primaryStage;
-        mainWindow();
-    }
-    public void mainWindow(){
-        try{
-        FXMLLoader loader = new FXMLLoader(Main.class.getResource("sample.fxml"));
-        AnchorPane pane = loader.load();
-        window.setTitle("Hello Sir");
+    public void start(Stage primaryStage) throws Exception{
+        this.window = primaryStage;
+        Parent login = FXMLLoader.load(getClass().getResource("sample.fxml"));
 
-        Controller controller = loader.getController();
-        controller.setMain(this);
-
-        window.setScene(new Scene(pane, 600, 400));
+        window.setTitle("AppliManager");
+        window.setScene(new Scene(login, 700, 450));
         window.show();
-
-    }catch(IOException e) {
-            e.printStackTrace();
-        }
-        }
-    public void newWindow(){
-        FXMLLoader root2 = new FXMLLoader(Main.class.getResource("sample2.fxml"));
-        try {
-            AnchorPane pane = root2.load();
-            window.setTitle("Hello Sir");
-
-            Controller controller = root2.getController();
-            controller.setNewWindow(this);
-            window.setScene(new Scene(pane, 600, 400));
-            //nur für die zweiten fenster
-            //window2.show();
-        }catch(IOException e) {
-            e.printStackTrace();
-        }
     }
-    public static void main(String[] args) {
+
+    public void registerWindow() throws Exception{
+        Parent register = FXMLLoader.load(getClass().getResource("registerWindow.fxml"));
+        newWindow.setScene(new Scene(register, 700, 450));
+        newWindow.initOwner(window);
+        newWindow.initModality(Modality.APPLICATION_MODAL);
+        newWindow.showAndWait();
+        newWindow.show();
+    }
+
+    public static void main(String[] args) throws SQLException {
+
         launch(args);
+
     }
 }
