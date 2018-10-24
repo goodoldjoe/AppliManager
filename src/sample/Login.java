@@ -87,12 +87,14 @@ public class Login {
             connect();
             System.out.println("Registering");
 
-            String registerQuery = "INSERT INTO user(user, pw) " +
+            String registerQuery = "INSERT INTO user(user, pw, scene, bgc) " +
                     "VALUES (" +
-                    "?, ?)";
+                    "?, ?, ?, ?)";
             prepStmt = conn.prepareStatement(registerQuery);
             prepStmt.setString(1, name);
             prepStmt.setString(2, password);
+            prepStmt.setInt(3, 1);
+            prepStmt.setInt(4, 1);
 
             int erfolg = prepStmt.executeUpdate();
 
