@@ -12,6 +12,7 @@ import java.sql.SQLException;
 public class Main extends Application {
     Stage window;
     Stage newWindow = new Stage();
+    boolean opened = false;
     @Override
     public void start(Stage primaryStage) throws Exception{
         this.window = primaryStage;
@@ -23,12 +24,14 @@ public class Main extends Application {
     }
 
     public void registerWindow() throws Exception{
-        Parent register = FXMLLoader.load(getClass().getResource("registerWindow.fxml"));
-        newWindow.setScene(new Scene(register, 700, 450));
-        newWindow.initOwner(window);
-        newWindow.initModality(Modality.APPLICATION_MODAL);
+        if (!opened){
+            Parent register = FXMLLoader.load(getClass().getResource("registerWindow.fxml"));
+            newWindow.setScene(new Scene(register, 700, 450));
+            newWindow.initOwner(window);
+            newWindow.initModality(Modality.APPLICATION_MODAL);
+            opened = true;
+        }
         newWindow.showAndWait();
-        newWindow.show();
     }
 
     public static void main(String[] args) throws SQLException {
