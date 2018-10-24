@@ -36,7 +36,6 @@ public class Controller {
     @FXML
     private void openRegisterWindow() {
         try {
-            System.out.println("kakspasst");
             main.registerWindow();
         } catch (Exception e) {
             e.printStackTrace();
