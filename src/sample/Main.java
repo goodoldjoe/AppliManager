@@ -13,6 +13,7 @@ public class Main extends Application {
     Stage window;
     Stage newWindow = new Stage();
     boolean opened = false;
+    Login preverence = new Login();
     @Override
     public void start(Stage primaryStage) throws Exception{
         this.window = primaryStage;
@@ -38,5 +39,17 @@ public class Main extends Application {
 
         launch(args);
 
+    }
+
+    public void mainstage(String user) throws Exception {
+        preverence.connect();
+        preverence.checkPreverence("theme", user);
+        preverence.checkPreverence("backgroundcolor", user);
+        System.out.println("hallo");
+        Parent mainfxml = FXMLLoader.load(getClass().getResource("sample/theme1.fxml"));
+        System.out.println("Bubu");
+        window.setScene(new Scene(mainfxml, 700, 450));
+        //window.showAndWait();
+        window.show();
     }
 }

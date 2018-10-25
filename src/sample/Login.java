@@ -1,6 +1,10 @@
 package sample;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+
 
 public class Login {
 
@@ -79,6 +83,90 @@ public class Login {
 
         return loggedIn;
     }
+    public Boolean checkPreverence(String todo, String user) throws Exception{
+        boolean bool = true;
+
+        if (todo == "theme"){
+            int theme = getTheme(user);
+            if (theme == 1){
+                bool = true;
+            }else {
+                 bool = false;
+            }
+        }else {
+            int bgc = getBgc(user);
+            if (bgc == 1) {
+                bool = true;
+            }else {
+                bool = false;
+            }
+        }
+    return bool;
+    }
+    public int getBgc(String user)   throws SQLException
+    {
+        int result = 1;
+        connect();
+
+            String query = "SELECT user.bgc FROM user WHERE USER.USER = ?";
+            try
+            {
+                // going to do a search using "upper"
+                user = user.toUpperCase();
+
+                // create the preparedstatement and add the criteria
+                PreparedStatement ps = conn.prepareStatement(query);
+                ps.setString(1, "%" + user + "%");
+
+                // process the results
+                ResultSet rs = ps.executeQuery();
+                while ( rs.next() )
+                {
+                    result = rs.getInt("scene");
+                }
+                rs.close();
+                ps.close();
+            }
+            catch (SQLException se)
+            {
+                // log exception;
+                throw se;
+            }
+        return result;
+
+        }
+
+    public int getTheme(String user)
+      throws SQLException
+        {
+            connect();
+            int result = 1;
+            String query = "SELECT user.scene FROM user WHERE USER.USER = ?";
+            try
+            {
+                // going to do a search using "upper"
+                user = user.toUpperCase();
+
+                // create the preparedstatement and add the criteria
+                PreparedStatement ps = conn.prepareStatement(query);
+                ps.setString(1, "%" + user + "%");
+
+                // process the results
+                ResultSet rs = ps.executeQuery();
+                while ( rs.next() )
+                {
+                    result = rs.getInt("scene");
+                }
+                rs.close();
+                ps.close();
+            }
+            catch (SQLException se)
+            {
+                // log exception;
+                throw se;
+            }
+            return result;
+        }
 
     public Boolean register(String name, String password) {
         boolean registerSuccess = false;
@@ -87,12 +175,14 @@ public class Login {
             connect();
             System.out.println("Registering");
 
-            String registerQuery = "INSERT INTO user(user, pw) " +
+            String registerQuery = "INSERT INTO user(user, pw, scene, bgc) " +
                     "VALUES (" +
-                    "?, ?)";
+                    "?, ?, ?, ?)";
             prepStmt = conn.prepareStatement(registerQuery);
             prepStmt.setString(1, name);
             prepStmt.setString(2, password);
+            prepStmt.setInt(3, 1);
+            prepStmt.setInt(4, 1);
 
             int erfolg = prepStmt.executeUpdate();
 
