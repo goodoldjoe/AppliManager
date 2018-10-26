@@ -7,23 +7,12 @@ import javafx.scene.text.Text;
 
 public class RegisterWindow {
     private Login login = new Login();
+    private Main main;
 
-    @FXML
-    private Button registerButton;
 
-    @FXML
-    private TextField userRegister;
 
-    @FXML
-    private TextField pwRegister;
 
-    @FXML
-    private TextField pwDoubleCheck;
-
-    @FXML
-    private Text errorText;
-
-    @FXML
+    /*@FXML
     private void registerProcess(){
         String user = userRegister.getText();
         String pw = pwRegister.getText();
@@ -31,11 +20,12 @@ public class RegisterWindow {
         if (pw.equals(pwApprove)) {
             if (login.register(user, pw)) {
                 System.out.println("YAY!");
+                main.closeRegister();
             } else {
                 System.out.println("Aww!");
             }
         } else {
             errorText.setText("Password mismatch! Try again.");
         }
-    }
+    }*/
 }

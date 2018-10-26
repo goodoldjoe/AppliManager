@@ -7,7 +7,7 @@ import java.util.List;
 
 
 public class Login {
-
+    //
     //static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
     private static final String DB_URL = "jdbc:mysql://localhost/AppliManager?serverTimezone=UTC";
 
@@ -189,6 +189,7 @@ public class Login {
             if (erfolg > 0) {
                 System.out.println("Insert erfolg!");
                 registerSuccess = true;
+               // main.closeRegister();
             } else {
                 System.out.println("Insert failed | No ROW Affected");
             }
