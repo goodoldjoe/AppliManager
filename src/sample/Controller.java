@@ -54,6 +54,7 @@ public class Controller {
     private TextField pwRegister;
     @FXML
     private TextField pwDoubleCheck;
+    @FXML private Text unique;
 
     @FXML private javafx.scene.control.Label status, label;
     @FXML private javafx.scene.control.TextField textfield, text;
@@ -104,6 +105,7 @@ public class Controller {
                     main.closeRegister();
                 } else {
                     System.out.println("Aww!");
+                    unique.setText("Username already exists!");
                 }
             } else {
                 errorTextRegister.setText("Password mismatch! Try again.");
@@ -153,10 +155,11 @@ public class Controller {
             String java = "Orange";
             String csharp = "Blau";
             String python = "Grün";
+            String white = "Weiss";
 
             String defaultString = csharp;
 
-            ChoiceDialog<String> dialog = new ChoiceDialog<String>(defaultString, java, csharp, python);
+            ChoiceDialog<String> dialog = new ChoiceDialog<String>(defaultString, java, csharp, python, white);
 
             dialog.setTitle("Background");
             dialog.setHeaderText("Wählen Sie eine Hintergrundfarbe");
@@ -190,10 +193,11 @@ public class Controller {
             String java = "Orange";
             String csharp = "Blau";
             String python = "Grün";
+            String white = "Weiss";
 
             String defaultString = csharp;
 
-            ChoiceDialog<String> dialog = new ChoiceDialog<String>(defaultString, java, csharp, python);
+            ChoiceDialog<String> dialog = new ChoiceDialog<String>(defaultString, java, csharp, python, white);
 
             dialog.setTitle("Background");
             dialog.setHeaderText("Wählen Sie eine Hintergrundfarbe");

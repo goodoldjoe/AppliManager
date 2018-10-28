@@ -29,6 +29,7 @@ public class Main extends Application {
     Stage newWindow = new Stage();
     Stage mainstage = new Stage();
     AnchorPane pane;
+    //BorderPane pane2;
     Controller controller;
 
 
@@ -72,7 +73,7 @@ public class Main extends Application {
             Controller controller = loader.getController();
             controller.register(this);
             System.out.println(controller);
-            newWindow.setScene(new Scene(pane, 700, 450));
+            newWindow.setScene(new Scene(pane, 451, 227));
             newWindow.initOwner(window);
             newWindow.initModality(Modality.APPLICATION_MODAL);
             opened = true;
@@ -108,6 +109,9 @@ public class Main extends Application {
                 break;
             case 3:
                 pane.setStyle("-fx-background-color: green;");
+                break;
+            case 4:
+                pane.setStyle("-fx-background-color: white;");
                 break;
         }
         Scene scene = new Scene(pane, 700, 450);
@@ -146,6 +150,9 @@ public class Main extends Application {
             case 3:
                 pane.setStyle("-fx-background-color: green;");
                 break;
+            case 4:
+                pane.setStyle("-fx-background-color: white;");
+                break;
         }
         Scene scene = new Scene(pane, 700, 450);
         if (scene == null)
@@ -163,6 +170,7 @@ public class Main extends Application {
     public void changeColor(String color, String user) throws IOException {
         int theme = 1;
         FXMLLoader loader;
+        AnchorPane pane;
         try {
            theme =  preverence.getTheme(user);
         } catch (SQLException e) {
@@ -170,14 +178,20 @@ public class Main extends Application {
         }
         if (theme == 1) {
              loader = new FXMLLoader(Main.class.getResource("theme1.fxml"));
+             pane = loader.load();
+            System.out.println("Bubu");
+            //scene.setRoot(solo);
+            Controller controller = loader.getController();
+            controller.theme(this, user);
         }else{
             loader = new FXMLLoader(Main.class.getResource("theme2.fxml"));
+            pane = loader.load();
+            System.out.println("Bubu");
+            //scene.setRoot(solo);
+            Controller controller = loader.getController();
+            controller.theme2(this, user);
         }
-        AnchorPane pane = loader.load();
-        System.out.println("Bubu");
-        //scene.setRoot(solo);
-        Controller controller = loader.getController();
-        controller.theme(this, user);
+
         switch(color){
             case "Orange":
                 System.out.println(pane);
@@ -204,6 +218,13 @@ public class Main extends Application {
                     e.printStackTrace();
                 }
                 break;
+            case "Weiss":
+                pane.setStyle("-fx-background-color: white;");
+                try {
+                    preverence.savePreference(user, "bgc", 4);
+                } catch (SQLException e) {
+                    e.printStackTrace();
+                }
         }
         Scene scene = new Scene(pane, 700, 450);
         window.setScene(scene);
@@ -398,7 +419,7 @@ public class Main extends Application {
 
         properties.getItems().add(background);
         menu.getMenus().add(properties);
-        background.setOnAction( e -> openSettings());
+        background.setOnAction( e -> openSettings(pane2));
 
 
         FlowPane flow = new FlowPane();
@@ -461,7 +482,7 @@ public class Main extends Application {
         }
     }
 
-    private void openSettings() {
+    private void openSettings(BorderPane pane3) {
 
         Label label;
         label = new Label("Choose the Preferd Background Color:");
@@ -479,13 +500,13 @@ public class Main extends Application {
         blau.setMinSize   (65, 50);
 
         rosa.setOnAction(e    ->
-                color("pink"));
+                color("pink", pane3));
         orange.setOnAction( e->
-                color("orange"));
+                color("orange", pane3));
         schwarz.setOnAction(e   ->
-                color("black"));
+                color("black", pane3));
         blau.setOnAction(e   ->
-                color("blue"));
+                color("blue", pane3));
 
         FlowPane buttons = new FlowPane();
         buttons.setPadding(new Insets(0,10,0,10));
@@ -504,20 +525,20 @@ public class Main extends Application {
         newWindow.show();
     }
 
-    private void color(String backgroundcolor) {
+    private void color(String backgroundcolor, BorderPane pane4) {
         switch(backgroundcolor) {
 
             case "pink":
-                pane.setStyle("-fx-background-color: pink;");
+                pane4.setStyle("-fx-background-color: pink;");
                 break;
             case "orange":
-                pane.setStyle("-fx-background-color: orange;");
+                pane4.setStyle("-fx-background-color: orange;");
                 break;
             case "black":
-                pane.setStyle("-fx-background-color: black;");
+                pane4.setStyle("-fx-background-color: black;");
                 break;
             case "blue":
-                pane.setStyle("-fx-background-color: blue;");
+                pane4.setStyle("-fx-background-color: blue;");
                 break;
         }
     }

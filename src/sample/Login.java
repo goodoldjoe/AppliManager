@@ -155,7 +155,7 @@ public class Login {
             prepStmt.setString(1, name);
             prepStmt.setString(2, password);
             prepStmt.setInt(3, 1);
-            prepStmt.setInt(4, 1);
+            prepStmt.setInt(4, 4);
 
             int erfolg = prepStmt.executeUpdate();
 
@@ -169,6 +169,7 @@ public class Login {
             correctEntry = true;
         } catch (SQLException e) {
             System.out.println("Insert failed");
+
         } finally {
             cleanConn();
         }
