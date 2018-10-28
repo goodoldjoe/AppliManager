@@ -19,7 +19,9 @@
         <items>
           <MenuItem fx:id="btn_bgc" mnemonicParsing="false" text="Background" />
           <MenuItem fx:id="btn_theme" mnemonicParsing="false" text="Theme" />
+            <MenuItem fx:id="btn_logout" mnemonicParsing="false" text="LogOut" />
             <MenuItem fx:id="btn_close" mnemonicParsing="false" text="Close" />
+            <MenuItem fx:id="btn_delete" mnemonicParsing="false" text="Delete Account" />
         </items>
       </MenuButton>
       <Button fx:id="btn_phone" layoutX="121.0" layoutY="177.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="87.0" text="Phone" />

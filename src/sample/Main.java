@@ -53,9 +53,17 @@ public class Main extends Application {
     @Override
     public void start(Stage primaryStage) throws Exception{
         this.window = primaryStage;
+        loginWindow();
+    }
+    public void loginWindow(){
         //Parent login = FXMLLoader.load(getClass().getResource("sample.fxml"));
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("sample.fxml"));
-        BorderPane pane = loader.load();
+        BorderPane pane = null;
+        try {
+            pane = loader.load();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         window.setTitle("AppliManager");
         Controller controller = loader.getController();
         controller.sample(this);

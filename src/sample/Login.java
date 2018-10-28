@@ -196,6 +196,31 @@ public class Login {
         }
 
     }
+    public void delete(String user){
+        try {
+            connect();
+            String registerQuery = "Delete from user where user.user = ?";
+
+            prepStmt = conn.prepareStatement(registerQuery);
+            prepStmt.setString(1, user);
+
+            int erfolg = prepStmt.executeUpdate();
+
+            if (erfolg > 0) {
+                System.out.println("Delete erfolg!");
+
+                // main.closeRegister();
+            } else {
+                System.out.println("Delete failed | No ROW Affected");
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Delete failed");
+
+        } finally {
+            cleanConn();
+        }
+    }
 
     // für theme1 ist der int 1 für theme 2 ist der int 2
     // für blau ist der int 1, Orange ist der int 2 für grün ist der int 3

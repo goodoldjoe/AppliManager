@@ -13,7 +13,9 @@
         <items>
           <MenuItem fx:id="btn_bgc2" mnemonicParsing="false" text="Background" />
           <MenuItem fx:id="btn_theme2" mnemonicParsing="false" text="Theme" />
+            <MenuItem fx:id="btn_logout2" mnemonicParsing="false" text="LogOut" />
             <MenuItem fx:id="btn_close2" mnemonicParsing="false" text="Close" />
+            <MenuItem fx:id="btn_delete2" mnemonicParsing="false" text="Delete Account" />
         </items>
       </MenuButton>
       <Text layoutX="14.0" layoutY="75.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Applikationsmanager" wrappingWidth="277.1366882324219">

@@ -39,9 +39,9 @@ public class Controller {
     @FXML
     private Text errorText, errorTextRegister, user_name, user_name2;
     @FXML
-    private MenuItem btn_theme, btn_bgc, btn_close;
+    private MenuItem btn_theme, btn_bgc, btn_close, btn_delete, btn_logout;
     @FXML
-    private MenuItem btn_bgc2, btn_theme2, btn_close2;
+    private MenuItem btn_bgc2, btn_theme2, btn_close2, btn_delete2, btn_logout2;
     @FXML
     private Button regiButt, submitButt, registerButton;
     @FXML
@@ -119,6 +119,17 @@ public class Controller {
         btn_phone.setOnAction(e -> {
             main.openPhone();
         });
+        btn_delete.setOnAction(e -> {
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Delete " + user_name.getText() + "?", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+            alert.setTitle("Delete Account");
+            alert.setHeaderText("Benutzerkonto löschen");
+            alert.setContentText("Möchten Sie Ihr Benutzerkonto wirklich löschen?");
+
+            alert.showAndWait();
+            if (alert.getResult() == ButtonType.YES) {
+                login.delete(user);
+                 main.loginWindow();}
+        });
 
         btn_close.setOnAction(e -> {
             main.closeMainstage();
@@ -179,6 +190,9 @@ public class Controller {
         btn_calculator.setOnAction(e -> {
             main.openCalculator();
         });
+        btn_logout.setOnAction(e -> {
+            main.loginWindow();
+        });
     }
     public void theme2(Main main, String user){
         this.main = main;
@@ -188,6 +202,21 @@ public class Controller {
         });
         btn_phone2.setOnAction(e -> {
             main.openPhone();
+        });
+        btn_delete2.setOnAction(e -> {
+            Alert alert2 = new Alert(Alert.AlertType.CONFIRMATION, "Delete " + user_name2.getText() + "?", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+            alert2.setTitle("Delete Account");
+            alert2.setHeaderText("Benutzerkonto löschen");
+            alert2.setContentText("Möchten Sie Ihr Benutzerkonto wirklich löschen?");
+
+            alert2.showAndWait();
+            if (alert2.getResult() == ButtonType.YES) {
+                login.delete(user);
+                main.loginWindow();}
+        });
+
+        btn_logout2.setOnAction(e -> {
+            main.loginWindow();
         });
         btn_bgc2.setOnAction(e -> {
             String java = "Orange";
