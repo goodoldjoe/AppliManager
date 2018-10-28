@@ -45,13 +45,13 @@
         <counts>
           <entry key="fxml" value="83" />
           <entry key="java" value="5849" />
-          <entry key="txt" value="157" />
+          <entry key="txt" value="173" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="JAVA" value="5849" />
-          <entry key="PLAIN_TEXT" value="157" />
+          <entry key="PLAIN_TEXT" value="173" />
           <entry key="XML" value="83" />
         </counts>
       </usages-collector>
@@ -247,7 +247,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540738794125" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1540738899598" />
     <property name="last_opened_file_path" value="C:/Program Files (x86)/MySQL/Connector J 8.0/mysql-connector-java-8.0.13.jar!/" />
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="project.structure.proportion" value="0.0" />
@@ -357,14 +357,20 @@
       <option name="project" value="LOCAL" />
       <updated>1540738500926</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="husöhn">
+      <created>1540738924021</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1540738924021</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="ToolWindowManager">
     <frame x="-6" y="-6" width="1292" height="692" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.29126215" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.29126215" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -373,7 +379,7 @@
       <window_info id="Favorites" order="6" weight="0.32928804" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.6885113" visible="true" weight="0.29307282" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.6885113" visible="true" weight="0.29307282" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.48624596" weight="0.39964476" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -400,7 +406,8 @@
     <MESSAGE value="Merge branch 'oscar' of https://github.com/goodoldjoe/AppliManager&#10;&#10;# Conflicts:&#10;#&#9;src/sample/Controller.java&#10;#&#9;src/sample/Main.java&#10;#&#9;src/sample/sample.fxml" />
     <MESSAGE value="ready mit applikations bispiil.." />
     <MESSAGE value="errorhandling bei duplicate, fxml schöner, calc-methode muss pane als parameter annehmen.. u.ä." />
-    <option name="LAST_COMMIT_MESSAGE" value="errorhandling bei duplicate, fxml schöner, calc-methode muss pane als parameter annehmen.. u.ä." />
+    <MESSAGE value="husöhn" />
+    <option name="LAST_COMMIT_MESSAGE" value="husöhn" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
