@@ -5,23 +5,63 @@ import javafx.scene.control.*;
 import javafx.scene.text.Text;
 
 import java.io.IOException;
+import java.sql.SQLException;
 import java.util.Optional;
+
+import java.io.IOException;
+import java.util.Optional;
+
+import com.sun.javafx.logging.Logger;
+
+
+import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import javafx.scene.control.ButtonType;
+import javafx.scene.layout.AnchorPane;
+import javafx.stage.Stage;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.Alert;
+import javafx.scene.control.TextInputDialog;
+import javafx.scene.control.ChoiceDialog;
+
 
 public class Controller {
     private Login login = new Login();
     private Main main;
 
-    @FXML private TextField userNameInput;
-    @FXML private TextField pwInput;
-    @FXML private Text errorText, errorTextRegister,user_name;
-    @FXML private MenuItem btn_theme, btn_bgc, btn_close;
-    @FXML private Button regiButt, submitButt, registerButton;
-    @FXML private TextField userRegister;
-    @FXML private TextField pwRegister;
-    @FXML private TextField pwDoubleCheck;
+    @FXML
+    private TextField userNameInput;
+    @FXML
+    private TextField pwInput;
+    @FXML
+    private Text errorText, errorTextRegister, user_name, user_name2;
+    @FXML
+    private MenuItem btn_theme, btn_bgc, btn_close;
+    @FXML
+    private MenuItem btn_bgc2, btn_theme2, btn_close2;
+    @FXML
+    private Button regiButt, submitButt, registerButton;
+    @FXML
+    private Button btn_phone, btn_calculator;
+    @FXML
+    private Button btn_phone2, btn_calculator2;
+    @FXML
+    private TextField userRegister;
+    @FXML
+    private TextField pwRegister;
+    @FXML
+    private TextField pwDoubleCheck;
+
+    @FXML private javafx.scene.control.Label status, label;
+    @FXML private javafx.scene.control.TextField textfield, text;
+    @FXML private javafx.scene.control.Button nr1, nr2, nr3, nr4, nr5, nr6, nr7, nr8, nr9, nr0 ,nr12, nr11, hook, button;
 
 
-    public void sample(Main main){
+
+    public void sample(Main main) {
         this.main = main;
         submitButt.setOnAction(e -> {
             String user = userNameInput.getText();
@@ -29,7 +69,7 @@ public class Controller {
             if (!login.connect()) {
                 login.connect();
             }
-            if(login.checkLogin(user, pw)) {
+            if (login.checkLogin(user, pw)) {
                 System.out.println("Success!");
                 try {
                     main.defautScene(user);
@@ -45,12 +85,13 @@ public class Controller {
         regiButt.setOnAction(e -> {
             try {
                 main.registerWindow();
-            }catch (Exception e2) {
+            } catch (Exception e2) {
                 e2.printStackTrace();
             }
         });
     }
-    public void register(Main main){
+
+    public void register(Main main) {
         this.main = main;
         registerButton.setOnAction(e -> {
             String user = userRegister.getText();
@@ -69,20 +110,44 @@ public class Controller {
             }
         });
     }
-    public void theme1(Main main, String user){
+
+    public void theme(Main main, String user) {
         this.main = main;
-        user_name.setText("Eingeloggt als " +user);
+        user_name.setText("Eingeloggt als " + user);
+        btn_phone.setOnAction(e -> {
+            main.openPhone();
+        });
 
         btn_close.setOnAction(e -> {
             main.closeMainstage();
         });
         btn_theme.setOnAction(e -> {
-            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Delete " + user_name.getText()+ "?", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+            Alert alert = new Alert(Alert.AlertType.CONFIRMATION, "Delete " + user_name.getText() + "?", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
             alert.setTitle("Theme");
             alert.setHeaderText("Change Theme");
             alert.setContentText("Möchten Sie das Theme wechseln?");
 
             alert.showAndWait();
+            if (alert.getResult() == ButtonType.YES) {
+                try {
+                    if (login.getTheme(user) == 1){
+                        try {
+                            main.changeToTwo(user);
+                        } catch (Exception e1) {
+                            e1.printStackTrace();
+                        }
+                    }else {
+                        try {
+                            main.changeToOne(user);
+                        } catch (Exception e1) {
+                            e1.printStackTrace();
+                        }
+                    }
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
+            }
+
         });
         btn_bgc.setOnAction(e -> {
             String java = "Orange";
@@ -108,7 +173,160 @@ public class Controller {
             // eifach so?
             //text.setText(resultS);
         });
+        btn_calculator.setOnAction(e -> {
+            main.openCalculator();
+        });
     }
+    public void theme2(Main main, String user){
+        this.main = main;
+        user_name2.setText("Eingeloggt als " + user);
+        btn_calculator2.setOnAction(e -> {
+            main.openCalculator();
+        });
+        btn_phone2.setOnAction(e -> {
+            main.openPhone();
+        });
+        btn_bgc2.setOnAction(e -> {
+            String java = "Orange";
+            String csharp = "Blau";
+            String python = "Grün";
+
+            String defaultString = csharp;
+
+            ChoiceDialog<String> dialog = new ChoiceDialog<String>(defaultString, java, csharp, python);
+
+            dialog.setTitle("Background");
+            dialog.setHeaderText("Wählen Sie eine Hintergrundfarbe");
+            dialog.setContentText("Auswahl:");
+
+            Optional<String> result = dialog.showAndWait();
+            String resultS = result.get();
+            try {
+                main.changeColor(resultS, user);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            }
+        });
+        btn_close2.setOnAction(e -> {
+            main.closeMainstage();
+        });
+        btn_theme2.setOnAction(e -> {
+            Alert alert2 = new Alert(Alert.AlertType.CONFIRMATION, "Delete " + user_name2.getText() + "?", ButtonType.YES, ButtonType.NO, ButtonType.CANCEL);
+            alert2.setTitle("Theme");
+            alert2.setHeaderText("Change Theme");
+            alert2.setContentText("Möchten Sie das Theme wechseln?");
+
+            alert2.showAndWait();
+            if (alert2.getResult() == ButtonType.YES) {
+                try {
+                    if (login.getTheme(user) == 1){
+                        try {
+                            main.changeToTwo(user);
+                        } catch (Exception e1) {
+                            e1.printStackTrace();
+                        }
+                    }else {
+                        try {
+                            main.changeToOne(user);
+                        } catch (Exception e1) {
+                            e1.printStackTrace();
+                        }
+                    }
+                } catch (SQLException e1) {
+                    e1.printStackTrace();
+                }
+            }
+
+        });
+    }
+
+    public void phone(Main main){
+        this.main = main;
+        hook.setText("hook On");
+        nr1.setText("1");
+        nr2.setText("2");
+        nr3.setText("3");
+        nr4.setText("4");
+        nr5.setText("5");
+        nr6.setText("6");
+        nr7.setText("7");
+        nr8.setText("8");
+        nr9.setText("9");
+        nr0.setText("0");
+        nr11.setText("#");
+        nr12.setText("NewWindow");
+        hook.setText("hook On");
+        status.setText("ready");
+
+
+
+        nr1.setOnAction(e ->
+                {
+                    String text = textfield.getText();
+                    textfield.setText(text +"1");
+
+                }
+        );
+
+
+        textfield.appendText("1");
+
+        nr2.setOnAction(e -> {
+            String text = textfield.getText();
+            textfield.setText(text +"2");});
+
+        nr3.setOnAction(e -> {
+            String text = textfield.getText();
+            textfield.setText(text +"3");});
+
+        nr4.setOnAction(e -> {
+            String text = textfield.getText();
+            textfield.setText(text +"4");});
+
+        nr5.setOnAction(e -> {
+            String text = textfield.getText();
+            textfield.setText(text +"5");});
+
+        nr6.setOnAction(e -> {
+            String text = textfield.getText();
+            textfield.setText(text +"6");});
+
+        nr7.setOnAction(e -> {
+            String text = textfield.getText();
+            textfield.setText(text +"7");});
+
+        nr8.setOnAction(e -> {
+            String text = textfield.getText();
+            textfield.setText(text +"8");});
+
+        nr9.setOnAction(e -> {
+            String text = textfield.getText();
+            textfield.setText(text +"9");});
+
+        nr0.setOnAction(e -> {
+            String text = textfield.getText();
+            textfield.setText(text +"0");});
+
+        nr11.setOnAction(e -> {
+            String text = textfield.getText();
+            textfield.setText(text +"#");});
+
+        //nr12.setOnAction((event) -> { main.newWindow();});
+
+
+        hook.setOnAction(e -> {
+            if ("hook On".equals(hook.getText())) {
+                status.setText("connected..");
+                hook.setText("hook Off");
+
+            }
+            else {
+                status.setText("ready..");
+                hook.setText("hook On");
+                textfield.clear();}});
+    }
+    }
+
     /* das ist im setOnAction für den submitButt
     @FXML private void loginProcess(Main main) throws Exception { //
 
@@ -135,11 +353,3 @@ public class Controller {
             e.printStackTrace();
         }
     }*/
-    @FXML private void  saveChanges(){
-
-    }
-
-    @FXML private void close(){
-        main.closeMainstage();
-    }
-}

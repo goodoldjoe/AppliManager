@@ -28,11 +28,11 @@ public class Login {
             conn = DriverManager.getConnection(DB_URL, USER, PASS);
             System.out.println("Connect Success");
             connected = true;
-        }catch(SQLException se){
-        //Handle errors for JDBC
+        } catch (SQLException se) {
+            //Handle errors for JDBC
             se.printStackTrace();
-        }catch(Exception e){
-        //Handle errors for Class.forName
+        } catch (Exception e) {
+            //Handle errors for Class.forName
             e.printStackTrace();
         }/*finally{
         //finally block used to close resources
@@ -83,90 +83,63 @@ public class Login {
 
         return loggedIn;
     }
-    public Boolean checkPreverence(String todo, String user) throws Exception{
-        boolean bool = true;
 
-        if (todo == "theme"){
-            int theme = getTheme(user);
-            if (theme == 1){
-                bool = true;
-            }else {
-                 bool = false;
-            }
-        }else {
-            int bgc = getBgc(user);
-            if (bgc == 1) {
-                bool = true;
-            }else {
-                bool = false;
-            }
-        }
-    return bool;
-    }
-    public int getBgc(String user)   throws SQLException
-    {
+
+    public int getBgc(String user) throws SQLException {
         int result = 1;
         connect();
 
-            String query = "SELECT user.bgc FROM user WHERE USER.USER = ?";
-            try
-            {
-                // going to do a search using "upper"
-                user = user.toUpperCase();
+        String query = "SELECT user.bgc FROM user WHERE USER.USER = ?";
+        try {
+            // going to do a search using "upper"
+            //user = user.toUpperCase();
 
-                // create the preparedstatement and add the criteria
-                PreparedStatement ps = conn.prepareStatement(query);
-                ps.setString(1, "%" + user + "%");
+            // create the preparedstatement and add the criteria
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setString(1, "" + user + "");
 
-                // process the results
-                ResultSet rs = ps.executeQuery();
-                while ( rs.next() )
-                {
-                    result = rs.getInt("scene");
-                }
-                rs.close();
-                ps.close();
+            // process the results
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                result = rs.getInt("bgc");
             }
-            catch (SQLException se)
-            {
-                // log exception;
-                throw se;
-            }
+            rs.close();
+            ps.close();
+        } catch (SQLException se) {
+            // log exception;
+            throw se;
+        }
         return result;
 
-        }
+    }
 
     public int getTheme(String user)
-      throws SQLException
-        {
-            connect();
-            int result = 1;
-            String query = "SELECT user.scene FROM user WHERE USER.USER = ?";
-            try
-            {
-                // going to do a search using "upper"
-                user = user.toUpperCase();
+            throws SQLException {
+        connect();
+        int result = 1;
+        String query = "SELECT user.scene FROM user WHERE USER.USER = ?";
+        try {
+            // going to do a search using "upper"
+            //user = user.toUpperCase();
 
-                // create the preparedstatement and add the criteria
-                PreparedStatement ps = conn.prepareStatement(query);
-                ps.setString(1, "%" + user + "%");
+            // create the preparedstatement and add the criteria
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setString(1, "" + user + "");
 
-                // process the results
-                ResultSet rs = ps.executeQuery();
-                while ( rs.next() )
-                {
-                    result = rs.getInt("scene");
-                }
-                rs.close();
-                ps.close();
+            // process the results
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                result = rs.getInt("scene");
             }
-            catch (SQLException se)
-            {
-                // log exception;
-                throw se;
-            }
-            return result;
+            rs.close();
+            ps.close();
+
+        } catch (SQLException se) {
+            // log exception;
+            throw se;
         }
+        return result;
+    }
 
     public Boolean register(String name, String password) {
         boolean registerSuccess = false;
@@ -189,7 +162,7 @@ public class Login {
             if (erfolg > 0) {
                 System.out.println("Insert erfolg!");
                 registerSuccess = true;
-               // main.closeRegister();
+                // main.closeRegister();
             } else {
                 System.out.println("Insert failed | No ROW Affected");
             }
@@ -223,4 +196,41 @@ public class Login {
 
     }
 
+    // für theme1 ist der int 1 für theme 2 ist der int 2
+    // für blau ist der int 1, Orange ist der int 2 für grün ist der int 3
+    public void savePreference(String user, String preference, int integer)
+    throws SQLException{
+        connect();
+        int result = 1;
+        String query = "";
+        switch (preference){
+            case "theme":
+                query = "update user set user.scene = ? WHERE USER.USER = ?";
+                break;
+            case "bgc":
+                query = "update user set user.bgc = ? where user.user = ?";
+                break;
+        }
+
+        try {
+            // going to do a search using "upper"
+           // user = user.toUpperCase();
+
+            // create the preparedstatement and add the criteria
+            PreparedStatement ps = conn.prepareStatement(query);
+            ps.setString(1, "" + integer +"" );
+            ps.setString(2, "" + user + "");
+
+            // process the results
+            ps.executeUpdate();
+
+            //rs.close();
+            ps.close();
+
+        } catch (SQLException se) {
+            // log exception;
+            throw se;
+        }
+
+    }
 }

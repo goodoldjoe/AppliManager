@@ -7,7 +7,6 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
       <ButtonBar prefHeight="40.0" prefWidth="200.0">
@@ -18,14 +17,15 @@
       <MenuButton layoutX="501.0" layoutY="2.0" mnemonicParsing="false" text="Properties">
         <items>
           <MenuItem fx:id="btn_bgc" mnemonicParsing="false" text="Background" />
-          <MenuItem fx:id="btn_theme" mnemonicParsing="false" text="theme" />
+          <MenuItem fx:id="btn_theme" mnemonicParsing="false" text="Theme" />
             <MenuItem fx:id="btn_close" mnemonicParsing="false" text="Close" />
         </items>
       </MenuButton>
-      <Button layoutX="85.0" layoutY="148.0" mnemonicParsing="false" text="Phone" />
+      <Button fx:id="btn_phone" layoutX="85.0" layoutY="148.0" mnemonicParsing="false" text="Phone" />
       <Button layoutX="85.0" layoutY="237.0" mnemonicParsing="false" text="Button" />
-      <Button layoutX="433.0" layoutY="148.0" mnemonicParsing="false" text="Calculator" />
+      <Button fx:id="btn_calculator" layoutX="433.0" layoutY="148.0" mnemonicParsing="false" text="Calculator" />
       <Button layoutX="433.0" layoutY="237.0" mnemonicParsing="false" text="Button" />
       <Text layoutX="234.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Applikationsmanager" wrappingWidth="132.47003173828125" />
+      <Text layoutX="14.0" layoutY="369.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Qubic Design " wrappingWidth="132.47002959251404" />
    </children>
 </AnchorPane>

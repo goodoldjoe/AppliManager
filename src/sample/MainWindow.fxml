@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.layout.AnchorPane?>
+
+<AnchorPane minHeight="500.0" minWidth="200.0" prefHeight="500.0" prefWidth="200.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+   <children>
+      <HBox layoutX="14.0" layoutY="14.0" spacing="30.0">
+         <children>
+            <Label fx:id="status" alignment="CENTER" layoutX="14.0" layoutY="14.0" text="Label" />
+            <TextField fx:id="textfield" layoutX="136.0" layoutY="14.0" prefHeight="15.0" prefWidth="150.0" />
+         </children>
+      </HBox>
+      <HBox layoutX="14.0" layoutY="119.0" spacing="10.0">
+         <children>
+            <Button fx:id="hook" layoutX="14.0" layoutY="119.0" mnemonicParsing="false" prefHeight="350.0" prefWidth="70.0" text="Button" />
+            <VBox layoutX="92.0" layoutY="119.0" spacing="10.0">
+               <children>
+                  <HBox layoutX="92.0" layoutY="119.0" spacing="5.0">
+                     <children>
+                        <Button fx:id="nr1" layoutX="92.0" layoutY="119.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" text="Button" />
+                        <Button fx:id="nr2" layoutX="164.0" layoutY="119.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" text="Button" />
+                        <Button fx:id="nr3" layoutX="223.0" layoutY="119.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" text="Button" />
+                     </children>
+                  </HBox>
+                  <HBox layoutX="92.0" layoutY="212.0" spacing="5.0">
+                     <children>
+                        <Button fx:id="nr4" layoutX="92.0" layoutY="212.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" text="Button" />
+                        <Button fx:id="nr5" layoutX="164.0" layoutY="212.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" text="Button" />
+                        <Button fx:id="nr6" layoutX="223.0" layoutY="212.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" text="Button" />
+                     </children>
+                  </HBox>
+                  <HBox layoutX="92.0" layoutY="320.0" spacing="5.0">
+                     <children>
+                        <Button fx:id="nr7" layoutX="92.0" layoutY="320.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" text="Button" />
+                        <Button fx:id="nr8" layoutX="164.0" layoutY="320.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" text="Button" />
+                        <Button fx:id="nr9" layoutX="223.0" layoutY="320.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" text="Button" />
+                     </children>
+                  </HBox>
+                  <HBox layoutX="92.0" layoutY="397.0" spacing="5.0">
+                     <children>
+                        <Button fx:id="nr11" layoutX="92.0" layoutY="397.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" text="Button" />
+                        <Button fx:id="nr0" layoutX="164.0" layoutY="397.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" text="Button" />
+                        <Button fx:id="nr12" layoutX="228.0" layoutY="397.0" mnemonicParsing="false" prefHeight="70.0" prefWidth="70.0" text="Button" />
+                     </children>
+                  </HBox>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+   </children>
+</AnchorPane>
