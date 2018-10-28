@@ -569,7 +569,7 @@ public class Main extends Application {
             phone.show();
 
         } catch (IOException e) {
-            // TODO Auto-generated catch block
+
             e.printStackTrace();
         }
     }
