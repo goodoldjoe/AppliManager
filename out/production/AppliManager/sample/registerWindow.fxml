@@ -4,14 +4,15 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
+<?import javafx.scene.control.PasswordField?>
 
 <AnchorPane prefHeight="227.0" prefWidth="451.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
       <Text layoutX="37.0" layoutY="49.0" strokeType="OUTSIDE" strokeWidth="0.0" text="username" />
       <TextField fx:id="userRegister" layoutX="37.0" layoutY="53.0" />
       <Text layoutX="37.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="password" />
-      <TextField fx:id="pwRegister" layoutX="37.0" layoutY="108.0" />
-      <TextField fx:id="pwDoubleCheck" layoutX="215.0" layoutY="108.0" />
+      <PasswordField fx:id="pwRegister" layoutX="37.0" layoutY="108.0" />
+      <PasswordField fx:id="pwDoubleCheck" layoutX="215.0" layoutY="108.0" />
       <Text layoutX="215.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" text="password approval:" />
       <Button fx:id="registerButton" layoutX="163.0" layoutY="173.0" mnemonicParsing="false" text="Register" />
       <Text fx:id="errorTextRegister" layoutX="300.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="148.7999975681305" />

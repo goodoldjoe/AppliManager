@@ -17,7 +17,7 @@
     <top>
         <HBox prefHeight="84.0" prefWidth="600.0" BorderPane.alignment="CENTER">
             <children>
-                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Login" wrappingWidth="596.5366821289062" />
+                <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Please Login" wrappingWidth="596.5366821289062" />
             </children>
         </HBox>
     </top>
@@ -59,6 +59,8 @@
                     </items>
                 </SplitPane>
                 <Text fx:id="errorText" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="199.7366943359375" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Created by Studer, Zurbrügg &amp; Dittrich" wrappingWidth="235.13665771484375" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Applikationsmanager" GridPane.rowIndex="2" />
             </children>
         </GridPane>
     </center>
