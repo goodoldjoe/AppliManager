@@ -2,25 +2,15 @@ package sample;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
-import javafx.application.Application;
-
 import javafx.geometry.Insets;
-import javafx.scene.Scene;
-
 import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.FlowPane;
 import javafx.scene.layout.HBox;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.sql.SQLException;
 
@@ -33,14 +23,13 @@ public class Main extends Application {
     private double result;
     private double value1;
     private double value2;
-
     private TextField textfield;
     private String operator;
+
     //fenster für applikation phone
     Stage phone = new Stage();
     //fenster für die Applikation Calculator
     Stage calculator = new Stage();
-
     boolean opened = false;
     Login preverence = new Login();
 
@@ -50,7 +39,7 @@ public class Main extends Application {
         loginWindow();
     }
     public void loginWindow(){ // hier ist die Methode, welche von der start methode aufgerufen wird
-
+        //hier wird das LoginFXML geladen
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("sample.fxml"));
         BorderPane pane = null;
         try {
@@ -60,48 +49,49 @@ public class Main extends Application {
         }
         window.setTitle("AppliManager");
         Controller controller = loader.getController();
+        //hier wird die kontrollerklasse geladen welche das Main Objekt als parameter bekommt
         controller.sample(this);
         System.out.println(controller);
         window.setScene(new Scene(pane, 700, 450));
-        //Scene scene = new Scene(pane);
-        //window.setScene(scene);
         window.show();
     }
-
+    //diese methode wird vom Register button aus der Controller Methode des Logins aufgerufen falls sich jemand registrieren möchte
     public void registerWindow() throws Exception{
         if (!opened){
             FXMLLoader loader = new FXMLLoader(Main.class.getResource("registerWindow.fxml"));
             AnchorPane pane = loader.load();
             Controller controller = loader.getController();
+            //hier wird die kontrollerklasse geladen welche das Main Objekt als parameter bekommt
             controller.register(this);
             System.out.println(controller);
             newWindow.setScene(new Scene(pane, 451, 227));
+            //heir setzen wir das fenster auf modal, damit man kein durcheinenader machen kann als user
             newWindow.initOwner(window);
             newWindow.initModality(Modality.APPLICATION_MODAL);
             opened = true;
         }
         newWindow.showAndWait();
     }
+    //diese methode wird aufgerufen, sobald ein ogin erfolgreich durchgerührt werden konnte
     public void defautScene(String user) throws Exception {
         preverence.connect();
+        // hier wird entschieden wekche voeinstellungen der user hat, damit wir die Personalisierte version laden können
         if (preverence.getTheme(user) == 1){
             changeToOne(user);
         }else{
             changeToTwo(user);
         }
-        System.out.println("hallo");
-
-        //window.show();
     }
+    //deise methode braucht es wenn entschieden wurde, dass der user die Erste Scene gespeichert hat und die geladen werden muss
     public void changeToOne(String user) throws Exception{
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("theme1.fxml"));
         preverence.savePreference(user, "theme", 1);
         AnchorPane pane = loader.load();
-        System.out.println("Bubu");
-        //scene.setRoot(solo);
+        //wieder laden des kontrollers
         Controller controller = loader.getController();
         controller.theme(this, user);
         System.out.println("nachsetRoot");
+        // hier wird entschieden, welche backgroundcolor voreinstellungen der user eingespeichert hat
         switch (preverence.getBgc( user)){
             case 1:
                 pane.setStyle("-fx-background-color: blue;");
@@ -117,31 +107,19 @@ public class Main extends Application {
                 break;
         }
         Scene scene = new Scene(pane, 700, 450);
-        if (scene == null)
-            System.out.println("scene is null");
         window.setScene(scene);
         window.show();
-
-        //FXMLLoader loader = new FXMLLoader(Main.class.getResource("theme1.fxml"));
-        //System.out.println("Bubu");
-      // AnchorPane pane = loader.load();
-       // System.out.println("nachloader");
-       //Scene scene = new Scene(pane);
-       // System.out.println("vorscene");
-     //  window.setScene(scene);
-     //  System.out.println("nachscene");
-     //   window.show();
     }
+    // hier wird die zweite scene geladen, wenn der user diese eingespeichert hat
     public void changeToTwo(String user) throws Exception{
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("theme2.fxml"));
         preverence.savePreference(user, "theme", 2);
         AnchorPane pane = loader.load();
-        System.out.println("Bubu");
-        //scene.setRoot(solo);
+        //laden des kontrollers
         Controller controller = loader.getController();
         controller.theme2(this, user);
-
         System.out.println("nachsetRoot");
+        //entscheiden welche Backgroundcolor in der datenbank für den user eingespeichert wurde
         switch (preverence.getBgc( user)){
             case 1:
                 pane.setStyle("-fx-background-color: blue;");
@@ -157,18 +135,18 @@ public class Main extends Application {
                 break;
         }
         Scene scene = new Scene(pane, 700, 450);
-        if (scene == null)
-            System.out.println("scene is null");
         window.setScene(scene);
-
         window.show();
     }
+    //diese methode wird für das schliessen des registrierungsfensters gebraucht
     public void closeRegister(){
         newWindow.close();
     }
+    //diese mathode wird für das aschliessen des hauptfensters gebraucht
     public void  closeMainstage(){
         window.close();
     }
+    // mit diseser methode kann die hintergrundfarbe gewechselt werden und die preferenz wird auch gleich in der datenbank eingespeichert
     public void changeColor(String color, String user) throws IOException {
         int theme = 1;
         FXMLLoader loader;
@@ -179,26 +157,23 @@ public class Main extends Application {
             e.printStackTrace();
         }
         if (theme == 1) {
+            //auf welhces theme wird die hintergrundfarbe gelegt? hier auf das errste theme:
              loader = new FXMLLoader(Main.class.getResource("theme1.fxml"));
              pane = loader.load();
-            System.out.println("Bubu");
-            //scene.setRoot(solo);
-            Controller controller = loader.getController();
-            controller.theme(this, user);
+             Controller controller = loader.getController();
+             controller.theme(this, user);
         }else{
-            loader = new FXMLLoader(Main.class.getResource("theme2.fxml"));
-            pane = loader.load();
-            System.out.println("Bubu");
-            //scene.setRoot(solo);
-            Controller controller = loader.getController();
-            controller.theme2(this, user);
+            // hier auf das zewite theme
+             loader = new FXMLLoader(Main.class.getResource("theme2.fxml"));
+             pane = loader.load();
+             Controller controller = loader.getController();
+             controller.theme2(this, user);
         }
 
-        switch(color){
+        switch(color){ //hier wird entschieden welche farbe auf das pane gelegt werden soll
             case "Orange":
-                System.out.println(pane);
                 pane.setStyle("-fx-background-color: orange;");
-                try {
+                try { // und auch für später mit der Mthode savePreverence die daten geliche eingespeichert
                     preverence.savePreference(user, "bgc", 2);
                 } catch (SQLException e) {
                     e.printStackTrace();
@@ -206,7 +181,7 @@ public class Main extends Application {
                 break;
             case "Blau":
                 pane.setStyle("-fx-background-color: blue;");
-                try {
+                try { // speichern mit savePreverence
                     preverence.savePreference(user, "bgc", 1);
                 } catch (SQLException e) {
                     e.printStackTrace();
@@ -231,17 +206,16 @@ public class Main extends Application {
         Scene scene = new Scene(pane, 700, 450);
         window.setScene(scene);
     }
-
+    // hier ist die Calcluaor-Applikation hinterlegt und diese methode wird auch dadurch gestartet
     public void openCalculator(){
         BorderPane pane2 = new BorderPane();
         Button minus, mal, durch, gleich, clear, wurzel, plusminus, nr1, nr2, nr3, nr4, nr5, nr6, nr7, nr8, nr9, nr0, plus, komma;
 
         textfield = new TextField();
-
         textfield.setEditable(false);
         textfield.setMinWidth(300);
         textfield.setMinHeight(40);
-
+        //alle button instanzieren
         nr1    = new Button("1");
         nr2    = new Button("2");
         nr3    = new Button("3");
@@ -263,7 +237,7 @@ public class Main extends Application {
         wurzel    = new Button("√");
         plusminus = new Button("+/-");
         komma     = new Button(".");
-
+        // alle buttons formatieren
         nr1.setMinSize   (40, 40);
         nr2.setMinSize   (40, 40);
         nr3.setMinSize   (40, 40);
@@ -287,7 +261,7 @@ public class Main extends Application {
         wurzel.setMinSize  (100, 40);
         plusminus.setMinSize(100, 40);
         komma.setMinSize   (40, 40);
-
+        //allen button eine aktion geben mit der lambda funktion
         nr1.setOnAction(e -> {
             textfield.appendText("1");
         });
@@ -544,6 +518,7 @@ public class Main extends Application {
                 break;
         }
     }
+    // hier wird die Phone-applikation geladen
     public void openPhone(){
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("MainWindow.fxml"));
         try {
@@ -554,7 +529,6 @@ public class Main extends Application {
             phone.setTitle("Java Phone");
 
             //für die logik in der scene loader macht die verbindung
-
             Controller controller = loader.getController();
             controller.phone(this);
 
