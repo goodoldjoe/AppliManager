@@ -25,14 +25,10 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 public class Main extends Application {
+    //hauptfenster
     Stage window;
+    //registrierungsfenster
     Stage newWindow = new Stage();
-    Stage mainstage = new Stage();
-    AnchorPane pane;
-    //BorderPane pane2;
-    Controller controller;
-
-
 
     private double result;
     private double value1;
@@ -40,23 +36,21 @@ public class Main extends Application {
 
     private TextField textfield;
     private String operator;
-    //String user;
-    //AnchorPane pane = new AnchorPane();
-    //Scene scene = new Scene(pane);
-
+    //fenster für applikation phone
     Stage phone = new Stage();
+    //fenster für die Applikation Calculator
     Stage calculator = new Stage();
 
     boolean opened = false;
     Login preverence = new Login();
 
-    @Override
+    @Override //start methode für JAvaFx
     public void start(Stage primaryStage) throws Exception{
         this.window = primaryStage;
         loginWindow();
     }
-    public void loginWindow(){
-        //Parent login = FXMLLoader.load(getClass().getResource("sample.fxml"));
+    public void loginWindow(){ // hier ist die Methode, welche von der start methode aufgerufen wird
+
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("sample.fxml"));
         BorderPane pane = null;
         try {
