@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
@@ -59,8 +60,12 @@
                     </items>
                 </SplitPane>
                 <Text fx:id="errorText" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="199.7366943359375" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Created by Studer, Zurbrügg &amp; Dittrich" wrappingWidth="235.13665771484375" GridPane.columnIndex="1" GridPane.rowIndex="2" />
             <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Applikationsmanager" GridPane.rowIndex="2" />
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Created by Studer, Zurbrügg &amp; Dittrich" wrappingWidth="235.13665771484375" GridPane.columnIndex="2" GridPane.rowIndex="2">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Text>
             </children>
         </GridPane>
     </center>

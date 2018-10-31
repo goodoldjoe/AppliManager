@@ -7,7 +7,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="450.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<AnchorPane prefHeight="450.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
       <MenuButton layoutX="614.0" layoutY="6.0" mnemonicParsing="false" text="Properties">
         <items>
@@ -23,10 +23,10 @@
             <Font size="24.0" />
          </font></Text>
       <Text fx:id="user_name2" layoutX="14.0" layoutY="31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Text" wrappingWidth="270.4700927734375" />
-      <Button fx:id="btn_calculator2" layoutX="14.0" layoutY="101.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="87.0" text="Calculator" />
-      <Button fx:id="btn_phone2" layoutX="14.0" layoutY="158.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="87.0" text="Phone" />
-      <Button layoutX="14.0" layoutY="217.0" mnemonicParsing="false" text="Applikation 3" />
-      <Button layoutX="14.0" layoutY="282.0" mnemonicParsing="false" text="Applikation 4" />
+      <Button fx:id="btn_calculator2" layoutX="14.0" layoutY="101.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Calculator" />
+      <Button fx:id="btn_phone2" layoutX="14.0" layoutY="158.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Phone" />
+      <Button layoutX="14.0" layoutY="217.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Applikation 3" />
+      <Button layoutX="14.0" layoutY="282.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Applikation 4" />
       <Text layoutX="300.0" layoutY="175.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Vertical Design" wrappingWidth="121.1367130279541" />
    </children>
 </AnchorPane>

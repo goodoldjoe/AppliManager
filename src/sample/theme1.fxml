@@ -8,14 +8,14 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="450.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
+<AnchorPane prefHeight="450.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/10.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
       <ButtonBar prefHeight="40.0" prefWidth="200.0">
          <buttons>
             <Text fx:id="user_name" strokeType="OUTSIDE" strokeWidth="0.0" wrappingWidth="197.13671875" />
          </buttons>
       </ButtonBar>
-      <MenuButton layoutX="606.0" layoutY="8.0" mnemonicParsing="false" text="Properties">
+      <MenuButton layoutX="580.0" layoutY="7.0" mnemonicParsing="false" text="Properties">
         <items>
           <MenuItem fx:id="btn_bgc" mnemonicParsing="false" text="Background" />
           <MenuItem fx:id="btn_theme" mnemonicParsing="false" text="Theme" />
@@ -24,10 +24,10 @@
             <MenuItem fx:id="btn_delete" mnemonicParsing="false" text="Delete Account" />
         </items>
       </MenuButton>
-      <Button fx:id="btn_phone" layoutX="121.0" layoutY="177.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="87.0" text="Phone" />
-      <Button layoutX="121.0" layoutY="266.0" mnemonicParsing="false" text="Appliaktion 3" />
-      <Button fx:id="btn_calculator" layoutX="465.0" layoutY="177.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="87.0" text="Calculator" />
-      <Button layoutX="465.0" layoutY="266.0" mnemonicParsing="false" text="Applikation 4" />
+      <Button fx:id="btn_phone" layoutX="121.0" layoutY="177.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Phone" />
+      <Button layoutX="121.0" layoutY="266.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Appliaktion 3" />
+      <Button fx:id="btn_calculator" layoutX="465.0" layoutY="177.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Calculator" />
+      <Button layoutX="465.0" layoutY="266.0" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="100.0" text="Applikation 4" />
       <Text layoutX="234.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Applikationsmanager" wrappingWidth="231.47003173828125">
          <font>
             <Font size="24.0" />

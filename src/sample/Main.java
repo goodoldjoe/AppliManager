@@ -25,14 +25,10 @@ import java.io.IOException;
 import java.sql.SQLException;
 
 public class Main extends Application {
+    //hauptfenster
     Stage window;
+    //registrierungsfenster
     Stage newWindow = new Stage();
-    Stage mainstage = new Stage();
-    AnchorPane pane;
-    //BorderPane pane2;
-    Controller controller;
-
-
 
     private double result;
     private double value1;
@@ -40,23 +36,21 @@ public class Main extends Application {
 
     private TextField textfield;
     private String operator;
-    //String user;
-    //AnchorPane pane = new AnchorPane();
-    //Scene scene = new Scene(pane);
-
+    //fenster für applikation phone
     Stage phone = new Stage();
+    //fenster für die Applikation Calculator
     Stage calculator = new Stage();
 
     boolean opened = false;
     Login preverence = new Login();
 
-    @Override
+    @Override //start methode für JAvaFx
     public void start(Stage primaryStage) throws Exception{
         this.window = primaryStage;
         loginWindow();
     }
-    public void loginWindow(){
-        //Parent login = FXMLLoader.load(getClass().getResource("sample.fxml"));
+    public void loginWindow(){ // hier ist die Methode, welche von der start methode aufgerufen wird
+
         FXMLLoader loader = new FXMLLoader(Main.class.getResource("sample.fxml"));
         BorderPane pane = null;
         try {
@@ -68,7 +62,7 @@ public class Main extends Application {
         Controller controller = loader.getController();
         controller.sample(this);
         System.out.println(controller);
-        window.setScene(new Scene(pane, 700, 450));
+        window.setScene(new Scene(pane, 750, 450));
         //Scene scene = new Scene(pane);
         //window.setScene(scene);
         window.show();
@@ -122,7 +116,7 @@ public class Main extends Application {
                 pane.setStyle("-fx-background-color: white;");
                 break;
         }
-        Scene scene = new Scene(pane, 700, 450);
+        Scene scene = new Scene(pane, 750, 450);
         if (scene == null)
             System.out.println("scene is null");
         window.setScene(scene);
