@@ -9,7 +9,7 @@ import java.util.List;
 public class Login {
     //
     //static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
-    private static final String DB_URL = "jdbc:mysql://localhost/AppliManager?serverTimezone=UTC";
+    private static final String DB_URL = "jdbc:mysql://localhost/applimanager?serverTimezone=UTC";
 
     //  Database credentials
     private static final String USER = "root";
@@ -17,10 +17,10 @@ public class Login {
 
     //Database variables
     private Connection conn = null;
-    private Statement stmt = null;
     private PreparedStatement prepStmt = null;
     private ResultSet rs = null;
 
+    //method to connect to the server
     public Boolean connect() {
         Boolean connected = false;
         try {
@@ -51,6 +51,7 @@ public class Login {
         return connected;
     }
 
+    // method to check the details of the login input
     public Boolean checkLogin(String name, String password) {
         boolean loggedIn = false;
         try {
