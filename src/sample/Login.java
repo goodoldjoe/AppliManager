@@ -1,14 +1,15 @@
+/*
+With this class we handle most database related functions
+created by Zurbrügg, Dittrich, Studer
+ */
 package sample;
 
 import java.sql.*;
-import java.util.ArrayList;
-import java.util.LinkedList;
-import java.util.List;
 
 
 public class Login {
-    //
-    //static final String JDBC_DRIVER = "com.mysql.jdbc.Driver";
+
+    //statische variable für den connect url (verändert sich nicht, deshalb final);
     private static final String DB_URL = "jdbc:mysql://localhost/applimanager?serverTimezone=UTC";
 
     //  Database credentials
@@ -85,7 +86,7 @@ public class Login {
         return loggedIn;
     }
 
-
+    //method to get the background color information of the user
     public int getBgc(String user) throws SQLException {
         int result = 1;
         connect();
@@ -114,6 +115,7 @@ public class Login {
 
     }
 
+    //method to get the information on the layout of the user
     public int getTheme(String user)
             throws SQLException {
         connect();
@@ -142,6 +144,7 @@ public class Login {
         return result;
     }
 
+    //method to insert the details given by the user to register for an account
     public Boolean register(String name, String password) {
         boolean registerSuccess = false;
         boolean correctEntry = false;
@@ -177,6 +180,8 @@ public class Login {
         return registerSuccess;
     }
 
+    //this method cleans up the connection resources
+    // but only if there exists a connection
     public void cleanConn() {
         try {
             if (conn != null) {
@@ -187,6 +192,7 @@ public class Login {
         }
     }
 
+    //this method cleans up the resultset if there is one
     public void cleanResult() {
         try {
             if (rs != null) {
@@ -197,6 +203,8 @@ public class Login {
         }
 
     }
+
+    //with this method we give the user the option to delete his/her account
     public void delete(String user){
         try {
             connect();
@@ -225,10 +233,10 @@ public class Login {
 
     // für theme1 ist der int 1 für theme 2 ist der int 2
     // für blau ist der int 1, Orange ist der int 2 für grün ist der int 3
+    // this method is used to save the desired preferences of the user
     public void savePreference(String user, String preference, int integer)
     throws SQLException{
         connect();
-        int result = 1;
         String query = "";
         switch (preference){
             case "theme":
@@ -240,8 +248,6 @@ public class Login {
         }
 
         try {
-            // going to do a search using "upper"
-           // user = user.toUpperCase();
 
             // create the preparedstatement and add the criteria
             PreparedStatement ps = conn.prepareStatement(query);
@@ -251,7 +257,6 @@ public class Login {
             // process the results
             ps.executeUpdate();
 
-            //rs.close();
             ps.close();
 
         } catch (SQLException se) {

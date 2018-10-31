@@ -1,3 +1,8 @@
+/*
+This class handles all gui related funtions, e.g. methods that load different fxml
+created by Zurbrügg, Dittrich, Studer
+ */
+
 package sample;
 
 import javafx.fxml.FXML;
@@ -37,14 +42,14 @@ public class Controller {
     private TextField pwRegister;
     @FXML
     private TextField pwDoubleCheck;
-    @FXML private Text unique;
+    @FXML private Text unique; //error field for when we have duplicate username registration
 
-    @FXML private javafx.scene.control.Label status, label;
+    @FXML private javafx.scene.control.Label status;
     @FXML private javafx.scene.control.TextField textfield, text;
     @FXML private javafx.scene.control.Button nr1, nr2, nr3, nr4, nr5, nr6, nr7, nr8, nr9, nr0 ,nr12, nr11, hook, button;
 
 
-
+    //this method opens the login page, it's the first window that opens
     public void sample(Main main) {
         this.main = main;
         submitButt.setOnAction(e -> {
@@ -75,6 +80,7 @@ public class Controller {
         });
     }
 
+    //this method is used to open the register window and then call the corresponding method in the login class
     public void register(Main main) {
         this.main = main;
         registerButton.setOnAction(e -> {
@@ -96,6 +102,7 @@ public class Controller {
         });
     }
 
+    //with this method we open the window in the desired layout
     public void theme(Main main, String user) {
         this.main = main;
         user_name.setText("Eingeloggt als " + user);
@@ -177,6 +184,8 @@ public class Controller {
             main.loginWindow();
         });
     }
+
+    //with this method we open the window in the desired layout
     public void theme2(Main main, String user){
         this.main = main;
         user_name2.setText("Eingeloggt als " + user);
@@ -256,6 +265,7 @@ public class Controller {
         });
     }
 
+    //this method defines the java phone application and
     public void phone(Main main){
         this.main = main;
         hook.setText("hook On");
